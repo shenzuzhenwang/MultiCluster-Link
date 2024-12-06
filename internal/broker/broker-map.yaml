@@ -1,0 +1,11 @@
+kind: BrokerMap
+apiVersion: example.io/v1
+metadata:
+  name: cluster1-broker
+spec:
+  brokerip: 
+  - 10.10.1.81
+  - 10.10.1.83
+  broker: 
+  - broker1
+  - broker3

@@ -1,0 +1,20 @@
+kind: VpcNatGateway
+apiVersion: kubeovn.io/v1
+metadata:
+  name: vpc2-net1-ecmp
+spec:
+  vpc: test-vpc-2
+  subnet: vpc2-net1
+  lanIp: 10.0.1.253
+  selector:
+    - "kubernetes.io/os: linux"
+  externalSubnets:
+    - ovn-vpc-external-network
+---
+kind: IptablesEIP
+apiVersion: kubeovn.io/v1
+metadata:
+  name: eip22
+spec:
+  natGwDp: vpc2-net1-ecmp
+

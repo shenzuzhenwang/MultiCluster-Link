@@ -1,0 +1,12 @@
+kind: VpcNatGateway
+apiVersion: kubeovn.io/v1
+metadata:
+  name: vpc1-net1-gateway
+spec:
+  vpc: test-vpc-1
+  subnet: vpc1-net1
+  lanIp: 10.0.1.254
+  selector:
+    - "kubernetes.io/os: linux"
+  externalSubnets:
+    - ovn-vpc-external-network

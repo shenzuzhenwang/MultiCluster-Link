@@ -1,0 +1,12 @@
+apiVersion: xcl.example.io/v1
+kind: GatewayExIp
+metadata:
+  labels:
+    app.kubernetes.io/name: gatewayexip
+    app.kubernetes.io/instance: gatewayexip-sample
+    app.kubernetes.io/part-of: kubeovn-multivpc
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kubeovn-multivpc
+  name: gatewayexip-sample
+spec:
+  # TODO(user): Add fields here

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf3-client
+  annotations:
+    ovn.kubernetes.io/logical_switch: vpc2-net1
+  namespace: ns2
+  labels:
+    app: iperf3-client
+spec:
+  containers:
+  - name: iperf3
+    image: quay.io/submariner/nettest
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    imagePullPolicy: IfNotPresent

@@ -1,0 +1,31 @@
+kind: Broker
+apiVersion: example.io/v1
+metadata:
+  name: broker1-4
+  namespace: kube-system
+spec:
+  image: 'xclusterlink/controller' 	# broker image
+  env:
+    - name: BROKER
+      value: "true"
+  number: 4
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: broker
+spec:
+  selector:
+    app: broker
+  ports:
+    - protocol: TCP
+      port: 5044
+      targetPort: 5044
+  externalIPs:
+    - 10.10.1.81
+    - 10.10.1.82
+    - 10.10.1.83
+    - 10.10.1.84
+  type: ClusterIP

@@ -1,0 +1,136 @@
+# iperf3-server.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iperf3-server-1
+  annotations:
+    ovn.kubernetes.io/logical_switch: vpc2-net1
+  namespace: ns2
+  labels:
+    app: iperf3-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iperf3-1
+  template:
+    metadata:
+      labels:
+        app: iperf3-1
+    spec:
+      containers:
+      - name: iperf3
+        image: networkstatic/iperf3
+        command: ["/bin/sh", "-c", "iperf3 -s -p 5201"]
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iperf3-server-2
+  namespace: ns2
+  labels:
+    app: iperf3-1
+spec:
+  selector:
+    app: iperf3-1
+  ports:
+    - name: tcp-5201
+      protocol: TCP
+      port: 5201
+      targetPort: 5201
+    - name: udp-5201
+      protocol: UDP
+      port: 5201
+      targetPort: 5201
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iperf3-server-2
+  annotations:
+    ovn.kubernetes.io/logical_switch: vpc2-net1
+  namespace: ns2
+  labels:
+    app: iperf3-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iperf3-2
+  template:
+    metadata:
+      labels:
+        app: iperf3-2
+    spec:
+      containers:
+      - name: iperf3
+        image: networkstatic/iperf3
+        command: ["/bin/sh", "-c", "iperf3 -s -p 5201"]
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iperf3-server-20
+  namespace: ns2
+  labels:
+    app: iperf3-2
+spec:
+  selector:
+    app: iperf3-2
+  ports:
+    - name: tcp-5201
+      protocol: TCP
+      port: 5201
+      targetPort: 5201
+    - name: udp-5201
+      protocol: UDP
+      port: 5201
+      targetPort: 5201
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iperf3-server-3
+  annotations:
+    ovn.kubernetes.io/logical_switch: vpc2-net1
+  namespace: ns2
+  labels:
+    app: iperf3-3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iperf3-3
+  template:
+    metadata:
+      labels:
+        app: iperf3-3
+    spec:
+      containers:
+      - name: iperf3
+        image: networkstatic/iperf3
+        command: ["/bin/sh", "-c", "iperf3 -s -p 5201"]
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iperf3-server-21
+  namespace: ns2
+  labels:
+    app: iperf3-3
+spec:
+  selector:
+    app: iperf3-3
+  ports:
+    - name: tcp-5201
+      protocol: TCP
+      port: 5201
+      targetPort: 5201
+    - name: udp-5201
+      protocol: UDP
+      port: 5201
+      targetPort: 5201

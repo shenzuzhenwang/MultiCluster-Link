@@ -1,0 +1,239 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - statefulsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods/exec
+  verbs:
+  - create
+  - get
+- apiGroups:
+  - kubeovn.io
+  resources:
+  - subnets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - kubeovn.io
+  resources:
+  - vpc-dnses
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - kubeovn.io
+  resources:
+  - vpc-nat-gateways
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - kubeovn.io
+  resources:
+  - vpcs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - gatewayexips
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - gatewayexips/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - gatewayexips/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcdnsforwards
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcdnsforwards/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcdnsforwards/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcnattunnels
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcnattunnels/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcnattunnels/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - submariner.io
+  resources:
+  - clusterglobalegressips
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - submariner.io
+  resources:
+  - clusters
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - submariner.io
+  resources:
+  - gateways
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - submariner.io
+  resources:
+  - servicediscoveries
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch

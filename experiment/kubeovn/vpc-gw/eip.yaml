@@ -1,0 +1,6 @@
+kind: IptablesEIP
+apiVersion: kubeovn.io/v1
+metadata:
+  name: eip2
+spec:
+  natGwDp: vpc2-net1-gateway

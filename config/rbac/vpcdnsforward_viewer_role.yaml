@@ -1,0 +1,27 @@
+# permissions for end users to view vpcdnsforwards.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: vpcdnsforward-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubeovn-multivpc
+    app.kubernetes.io/part-of: kubeovn-multivpc
+    app.kubernetes.io/managed-by: kustomize
+  name: vpcdnsforward-viewer-role
+rules:
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcdnsforwards
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - vpcdnsforwards/status
+  verbs:
+  - get

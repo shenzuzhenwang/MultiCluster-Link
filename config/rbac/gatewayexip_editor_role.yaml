@@ -1,0 +1,31 @@
+# permissions for end users to edit gatewayexips.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: gatewayexip-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubeovn-multivpc
+    app.kubernetes.io/part-of: kubeovn-multivpc
+    app.kubernetes.io/managed-by: kustomize
+  name: gatewayexip-editor-role
+rules:
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - gatewayexips
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - xcl.example.io
+  resources:
+  - gatewayexips/status
+  verbs:
+  - get

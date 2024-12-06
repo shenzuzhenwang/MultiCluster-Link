@@ -1,0 +1,8 @@
+kind: VpcDns
+apiVersion: kubeovn.io/v1
+metadata:
+  name: test-dns1
+spec:
+  vpc: test-vpc-2
+  subnet: vpc2-net1
+  replicas: 2

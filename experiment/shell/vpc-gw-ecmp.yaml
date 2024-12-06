@@ -1,0 +1,34 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: vpc2-net1-gateway-ecmp
+  namespace: kube-system
+  annotations:
+    k8s.v1.cni.cncf.io/networks: kube-system/ovn-vpc-external-network
+    ovn-vpc-external-network.kube-system.kubernetes.io/allocated: "true"
+    ovn-vpc-external-network.kube-system.kubernetes.io/cidr: 172.16.150.0/24
+    ovn-vpc-external-network.kube-system.kubernetes.io/gateway: 172.16.150.1
+    ovn-vpc-external-network.kube-system.kubernetes.io/ip_address: 172.16.150.189
+    ovn.kubernetes.io/allocated: "true"
+    ovn.kubernetes.io/cidr: 10.0.1.0/24
+    ovn.kubernetes.io/gateway: 10.0.1.1
+    ovn.kubernetes.io/ip_address: 10.0.1.253
+    ovn.kubernetes.io/logical_router: test-vpc-2
+    ovn.kubernetes.io/logical_switch: vpc2-net1
+    ovn.kubernetes.io/mac_address: 00:00:00:53:6B:B7
+    ovn.kubernetes.io/pod_nic_type: veth-pair
+    ovn.kubernetes.io/routed: "true"
+    ovn.kubernetes.io/vpc_cidrs: '["10.0.1.0/24","10.0.2.0/24"]'
+
+spec:
+  containers:
+  - name: vpc2-net1-gw-ecmp
+    image: docker.io/xclusterlink/gateway:master
+    imagePullPolicy: IfNotPresent
+    command: ["sh", "-c", "while true; do sleep 10000; done"]
+    securityContext:
+      privileged: true
+      allowPrivilegeEscalation: true
+      capabilities:
+        add:
+          - ALL

@@ -1,0 +1,64 @@
+# nuttcp-client.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nuttcp-client
+  namespace: test
+  labels:
+    app: nuttcp-client
+spec:
+  containers:
+  - name: nuttcp
+    image: mardob/nuttcp
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "1000m"
+    imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nuttcp-client
+  namespace: sample
+  labels:
+    app: nuttcp-client
+spec:
+  containers:
+  - name: nuttcp
+    image: mardob/nuttcp
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "1000m"
+    imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nuttcp-client
+  namespace: skupper
+  labels:
+    app: nuttcp-client
+spec:
+  containers:
+  - name: nuttcp
+    image: mardob/nuttcp
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "1000m"
+    imagePullPolicy: IfNotPresent

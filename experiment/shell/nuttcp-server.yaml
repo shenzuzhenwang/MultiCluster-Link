@@ -1,0 +1,151 @@
+# nuttcp-server.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nuttcp-server
+  namespace: test
+  labels:
+    app: nuttcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nuttcp
+  template:
+    metadata:
+      labels:
+        app: nuttcp
+    spec:
+      containers:
+      - name: nuttcp
+        image: mardob/nuttcp
+        command: ["/bin/sh", "-c", "nuttcp -S; tail -f /dev/null"]
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nuttcp-server-2
+  namespace: test
+  labels:
+    app: nuttcp
+spec:
+  selector:
+    app: nuttcp
+  ports:
+    - name: tcp-5000
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+    - name: udp-5000
+      protocol: UDP
+      port: 5000
+      targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nuttcp-server
+  namespace: sample
+  labels:
+    app: nuttcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nuttcp
+  template:
+    metadata:
+      labels:
+        app: nuttcp
+    spec:
+      containers:
+      - name: nuttcp
+        image: mardob/nuttcp
+        command: ["/bin/sh", "-c", "nuttcp -S; tail -f /dev/null"]
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nuttcp-server-2
+  namespace: sample
+  labels:
+    app: nuttcp
+spec:
+  selector:
+    app: nuttcp
+  ports:
+    - name: tcp-5000
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+    - name: udp-5000
+      protocol: UDP
+      port: 5000
+      targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nuttcp-server
+  namespace: skupper
+  labels:
+    app: nuttcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nuttcp
+  template:
+    metadata:
+      labels:
+        app: nuttcp
+    spec:
+      containers:
+      - name: nuttcp
+        image: mardob/nuttcp
+        command: ["/bin/sh", "-c", "nuttcp -S; tail -f /dev/null"]
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nuttcp-server-2
+  namespace: skupper
+  labels:
+    app: nuttcp
+spec:
+  selector:
+    app: nuttcp
+  ports:
+    - name: tcp-5000
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+    - name: udp-5000
+      protocol: UDP
+      port: 5000
+      targetPort: 5000

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udp-server
+  namespace: skupper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udp-server
+  template:
+    metadata:
+      labels:
+        app: udp-server
+    spec:
+      containers:
+        - name: udp-server
+          image: quay.io/skupper/udp-server:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              protocol: UDP

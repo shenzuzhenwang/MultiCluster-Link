@@ -1,0 +1,64 @@
+# iperf3-client.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf3-client
+  namespace: test
+  labels:
+    app: iperf3-client
+spec:
+  containers:
+  - name: iperf3
+    image: mardob/nuttcp
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "1000m"
+    imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf3-client
+  namespace: sample
+  labels:
+    app: iperf3-client
+spec:
+  containers:
+  - name: iperf3
+    image: mardob/nuttcp
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "1000m"
+    imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf3-client
+  namespace: skupper
+  labels:
+    app: iperf3-client
+spec:
+  containers:
+  - name: iperf3
+    image: mardob/nuttcp
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "1000m"
+    imagePullPolicy: IfNotPresent

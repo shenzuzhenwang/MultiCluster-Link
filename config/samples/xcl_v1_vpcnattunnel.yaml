@@ -1,0 +1,9 @@
+apiVersion: xcl.example.io/v1
+kind: VpcNatTunnel
+metadata:
+  labels:
+    app.kubernetes.io/name: kubeovn-multivpc
+    app.kubernetes.io/managed-by: kustomize
+  name: vpcnattunnel-sample
+spec:
+  # TODO(user): Add fields here

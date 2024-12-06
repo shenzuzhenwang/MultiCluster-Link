@@ -1,0 +1,59 @@
+apiVersion: kubeovn.io/v1
+kind: SwitchLBRule
+metadata:
+  name:  cjh-slr-iperf2
+spec:
+  vip: 242.5.255.254
+  sessionAffinity: None
+  namespace: ns2
+  selector:
+    - app:iperf3-1
+  ports:
+    - name: tcp-5201
+      protocol: TCP
+      port: 5201
+      targetPort: 5201
+    - name: udp-5201
+      protocol: UDP
+      port: 5201
+      targetPort: 5201
+---
+apiVersion: kubeovn.io/v1
+kind: SwitchLBRule
+metadata:
+  name:  cjh-slr-iperf2-0
+spec:
+  vip: 242.5.255.251
+  sessionAffinity: None
+  namespace: ns2
+  selector:
+    - app:iperf3-2
+  ports:
+    - name: tcp-5201
+      protocol: TCP
+      port: 5201
+      targetPort: 5201
+    - name: udp-5201
+      protocol: UDP
+      port: 5201
+      targetPort: 5201
+---
+apiVersion: kubeovn.io/v1
+kind: SwitchLBRule
+metadata:
+  name:  cjh-slr-iperf2-1
+spec:
+  vip: 242.5.255.252
+  sessionAffinity: None
+  namespace: ns2
+  selector:
+    - app:iperf3-3
+  ports:
+    - name: tcp-5201
+      protocol: TCP
+      port: 5201
+      targetPort: 5201
+    - name: udp-5201
+      protocol: UDP
+      port: 5201
+      targetPort: 5201

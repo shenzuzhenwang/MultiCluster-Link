@@ -1,0 +1,12 @@
+kind: VpcNatGateway
+apiVersion: example.io/v1
+metadata:
+  name: gateway1
+spec:
+  vpc: vpc1
+  subnet: net1
+  lanIp: 192.168.1.254
+  selector:
+    - "kubernetes.io/os: linux"
+  externalSubnets:
+    - ovn-vpc-external-network

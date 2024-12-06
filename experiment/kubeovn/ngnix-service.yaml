@@ -1,0 +1,46 @@
+# nginx-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    ovn.kubernetes.io/logical_switch: vpc2-net1
+  namespace: ns2
+#  namespace: test
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: ns2
+#  namespace: test
+  name: nginx1
+  labels:
+    app: nginx
+spec:
+  selector:
+    app: nginx
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

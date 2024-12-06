@@ -1,0 +1,9 @@
+apiVersion: xcl.example.io/v1
+kind: VpcDnsForward
+metadata:
+  labels:
+    app.kubernetes.io/name: kubeovn-multivpc
+    app.kubernetes.io/managed-by: kustomize
+  name: vpcdnsforward-sample
+spec:
+  # TODO(user): Add fields here

@@ -1,0 +1,13 @@
+.idea
+.dapper
+/bin
+dist
+Makefile.dapper
+Makefile.shipyard
+output
+/vendor
+*.coverprofile
+*.out
+junit*.xml
+.shflags
+/Dockerfile.*

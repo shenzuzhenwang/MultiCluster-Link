@@ -1,0 +1,6 @@
+## Append samples of your project ##
+resources:
+- kubeovn_v1_gatewayexip.yaml
+- kubeovn_v1_vpcnattunnel.yaml
+- kubeovn_v1_vpcdnsforward.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
